@@ -9,7 +9,7 @@ int main(){
     int gd = DETECT, gm,color; 
     initgraph(&gd, &gm, NULL); 
     setbkcolor(15);
-    int x = 200 , y = 200, r = 120;
+    int x = 150 , y = 100, r = 40;
     int x1,x2,x3,y1,y2,y3;
     x1 = x , y1 = y - r;
     x2 = x - (sqrt(3)*r)/2 , y2 = y +  r/2;

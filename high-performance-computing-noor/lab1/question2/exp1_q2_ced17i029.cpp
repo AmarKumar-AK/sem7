@@ -13,17 +13,7 @@ int vector_add(vector<long double>a,vector<long double>b,long long n){
         c[i] = a[i] + b[i];
         // printf("%Lf  %Lf  %Lf\n",a[i],b[i],c[i]);
     }
-    // omp_set_num_threads(24);
-    // #pragma omp parallel shared (a,b,c,n) private(i)
-    // {
-    //     int tid,totalthreads;
-    //     tid = omp_get_thread_num();
-    //     totalthreads = omp_get_num_threads();
 
-    //     for(i = tid ; i < n ; i = i + totalthreads){
-    //         c[i] = a[i] + b[i];
-    //     }
-    // }
     return 0;
 }
 
