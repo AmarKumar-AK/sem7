@@ -59,41 +59,50 @@ void myInit (void)
 
 void display (void) 
 {
-    float cx=-0.5, cy=0.3, R=15;
+    float cx=-0.5, cy=0.2;
     draw_grid();
-    
-    float x=0, y=R;
-    float h=1-R;
+
+    int a=20, b=30;
+    int x=0,y=b;
+    int sa= a*a, sb=b*b;
+    int d1 = sb-sa*b+0.25*sa;
     draw_polygon(cx,cy);
     draw_polygon(cx+x*step,cy+y*step);
     draw_polygon(cx-x*step,cy+y*step);
-    draw_polygon(cx+x*step,cy-y*step);
     draw_polygon(cx-x*step,cy-y*step);
-
-    draw_polygon(cx+y*step,cy+x*step);
-    draw_polygon(cx-y*step,cy+x*step);
-    draw_polygon(cx+y*step,cy-x*step);
-    draw_polygon(cx-y*step,cy-x*step);
-    while(y>x){
-        if(h<0) h=h+(2*x)+3;
+    draw_polygon(cx+x*step,cy-y*step);
+    // region r1
+    while(sa*(y-0.5) > sb*(x+1)){
+        // choose e
+        if(d1<0) d1 = d1+sb*((x<<1)+3);
         else{
-            h=h+2*(x-y) + 5;
-            y=y-1;
+            d1 = d1+sb*((x<<1)+3) + sa*(-(y<<1)+2);
+            y--;
         }
-        x=x+1;
-        // cout<<"x : "<<x<<"     y : "<<y<<endl;
+        x++;
         draw_polygon(cx+x*step,cy+y*step);
         draw_polygon(cx-x*step,cy+y*step);
-        draw_polygon(cx+x*step,cy-y*step);
         draw_polygon(cx-x*step,cy-y*step);
-
-        draw_polygon(cx+y*step,cy+x*step);
-        draw_polygon(cx-y*step,cy+x*step);
-        draw_polygon(cx+y*step,cy-x*step);
-        draw_polygon(cx-y*step,cy-x*step);
+        draw_polygon(cx+x*step,cy-y*step);
     }
 
-    
+    int d2=sb*pow((x+0.5),2) + sa*pow((y-1),2) -sa*sb;
+    // region r2
+    while(y>0){
+        // choose se
+        if(d2<0){
+            d2 = d2 + sb*((x<<1)+2) + sa*(-(y<<1)+3);
+            x++;
+        }
+        else d2 = d2 + sa*(-(y<<1)+3);
+        y--;
+        draw_polygon(cx+x*step,cy+y*step);
+        draw_polygon(cx-x*step,cy+y*step);
+        draw_polygon(cx-x*step,cy-y*step);
+        draw_polygon(cx+x*step,cy-y*step);
+    }
+
+
     glFlush();
     
 } 
@@ -106,7 +115,7 @@ int main (int argc, char** argv)
 	glutInitWindowSize(750, 750); 
 	glutInitWindowPosition(0, 0); 
 
-	glutCreateWindow("Question 1"); 
+	glutCreateWindow("Question 2"); 
 	myInit(); 
 	
 	glutDisplayFunc(display); 
