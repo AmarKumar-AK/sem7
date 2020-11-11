@@ -3,9 +3,7 @@
 using namespace std;
 // width and height of screen
 const int width = 1200, height = 600;
-// Number of vertices
 int num_vertices;
-
 struct edge {
 	// ymax -> highest y coordinate of the edge
 	// ymin -> lowest y coordinate of the edge

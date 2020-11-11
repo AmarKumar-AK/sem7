@@ -1,2 +1,2 @@
-g++ question1.cpp -lGL -lGLU -lglut -o test
+g++ q1.cpp -lGL -lGLU -lglut -o test
 ./test
